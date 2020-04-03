@@ -6,8 +6,13 @@ AC_CONFIG_HEADERS([config.h])
 
 AC_PROG_CXX
 AM_PROG_AR
-AM_PATH_PYTHON
 PKG_INSTALLDIR
+
+# We need to enforce python2 only, because that's what the test framework
+# needs due to jsonrpclib.  For more details, see:
+# https://stackoverflow.com/questions/17878054/can-i-expect-python2-to-be-in-the-path/19173018#19173018
+m4_define_default([_AM_PTYHON_INTERPRETER_LIST], [python2 python2.7 python2.6])
+AM_PATH_PYTHON
 
 AC_LANG([C++])
 LT_INIT
